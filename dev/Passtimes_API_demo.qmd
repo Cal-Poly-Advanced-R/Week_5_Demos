@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Quarto
+
+```{r}
+get_passtimes(25.28, -120.65, elevation = 80)
+```
+```{r}
+library(tidyverse)
+
+my_capitals <- read_csv("https://raw.githubusercontent.com/jasperdebie/VisInfo/master/us-state-capitals.csv")
+
+
+passtimes_df <- map2_dfr(my_capitals$latitude, my_capitals$longitude,
+     ~ get_passtimes(.x, .y))
+
+
+dat <- my_capitals %>%
+  bind_cols(passtimes_df)
+
+```
+
